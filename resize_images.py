@@ -119,6 +119,7 @@ def main():
         base_dir / 'images' / 'dance',
         base_dir / 'images' / 'engagement',
         base_dir / 'images' / 'fashion',
+        base_dir / 'images' / 'about',
     ]
     
     # Check if images folder exists
