@@ -11,14 +11,12 @@ ThreePinfork/
 │   ├── portraits/
 │   ├── dance/
 │   ├── engagement/
-│   ├── fashion/
-│   └── graduation/
+│   └── fashion/
 ├── index.html
 ├── portraits.html
 ├── dance.html
 ├── engagement.html
 ├── fashion.html
-├── graduation.html
 └── ...
 ```
 
@@ -65,7 +63,7 @@ ThreePinfork/
 
 1. **Create the images folder:**
    ```bash
-   mkdir -p images/portraits images/dance images/engagement images/fashion images/graduation
+   mkdir -p images/portraits images/dance images/engagement images/fashion
    ```
 
 2. **Add your photos to the appropriate folders:**
@@ -95,7 +93,7 @@ ThreePinfork/
 
 2. **Create image folders:**
    ```bash
-   mkdir -p images/{portraits,dance,engagement,fashion,graduation}
+   mkdir -p images/{portraits,dance,engagement,fashion}
    ```
 
 3. **Copy your photos:**
