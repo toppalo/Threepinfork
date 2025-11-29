@@ -1,0 +1,58 @@
+// Complete Google Apps Script Code for Contact Form
+// Copy and paste this entire code into your Google Apps Script editor
+
+// Handle form submissions (POST requests)
+function doPost(e) {
+  try {
+    // Get the active spreadsheet
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    
+    // Get form data from the POST request
+    const name = e.parameter.name || '';
+    const email = e.parameter.email || '';
+    const phone = e.parameter.phone || '';
+    const message = e.parameter.message || '';
+    const timestamp = e.parameter.timestamp || new Date().toISOString();
+    
+    // Append the row to the sheet (Name, Email, Phone, Message, Timestamp)
+    sheet.appendRow([name, email, phone, message, timestamp]);
+    
+    // Return success page
+    return HtmlService.createHtmlOutput(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Success</title>
+        </head>
+        <body>
+          <h2>Thank you!</h2>
+          <p>Your message has been received.</p>
+        </body>
+      </html>
+    `);
+    
+  } catch (error) {
+    // Log error (check Execution log in Apps Script)
+    Logger.log('Error: ' + error.toString());
+    
+    return HtmlService.createHtmlOutput('Error: ' + error.toString());
+  }
+}
+
+// Handle direct URL visits (GET requests) - prevents "function not found" error
+function doGet(e) {
+  return HtmlService.createHtmlOutput(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Contact Form Script</title>
+      </head>
+      <body>
+        <h2>Contact Form Script</h2>
+        <p>This script handles form submissions from your website.</p>
+        <p>Form submissions work via POST requests.</p>
+      </body>
+    </html>
+  `);
+}
+

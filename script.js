@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Form Validation
+// Form Validation and Google Sheets Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
@@ -161,10 +161,12 @@ if (contactForm) {
     const formData = new FormData(contactForm);
     const name = formData.get('name') || contactForm.querySelector('[name="name"]')?.value;
     const email = formData.get('email') || contactForm.querySelector('[name="email"]')?.value;
+    const phone = formData.get('phone') || contactForm.querySelector('[name="phone"]')?.value || '';
     const message = formData.get('message') || contactForm.querySelector('[name="message"]')?.value;
 
+    // Validation
     if (!name || !email || !message) {
-      alert('Please fill in all required fields.');
+      alert('Please fill in all required fields (Name, Email, and Message).');
       return;
     }
 
@@ -174,8 +176,91 @@ if (contactForm) {
       return;
     }
 
-    alert('Thank you for your message! I will get back to you soon.');
-    contactForm.reset();
+    // Disable submit button
+    const submitBtn = contactForm.querySelector('.btn-submit');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    // Get the Google Apps Script Web App URL from the script tag
+    const scriptTag = document.querySelector('script[data-google-script-url]');
+    const scriptURL = scriptTag ? scriptTag.getAttribute('data-google-script-url') : null;
+
+    if (!scriptURL) {
+      alert('Form configuration error. Please contact the website administrator.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+      return;
+    }
+
+    // Create a hidden form to submit to Google Apps Script
+    const hiddenForm = document.createElement('form');
+    hiddenForm.method = 'POST';
+    hiddenForm.action = scriptURL;
+    hiddenForm.target = 'hidden_iframe';
+    hiddenForm.style.display = 'none';
+
+    // Add form fields
+    const nameInput = document.createElement('input');
+    nameInput.type = 'hidden';
+    nameInput.name = 'name';
+    nameInput.value = name;
+    hiddenForm.appendChild(nameInput);
+
+    const emailInput = document.createElement('input');
+    emailInput.type = 'hidden';
+    emailInput.name = 'email';
+    emailInput.value = email;
+    hiddenForm.appendChild(emailInput);
+
+    const phoneInput = document.createElement('input');
+    phoneInput.type = 'hidden';
+    phoneInput.name = 'phone';
+    phoneInput.value = phone;
+    hiddenForm.appendChild(phoneInput);
+
+    const messageInput = document.createElement('input');
+    messageInput.type = 'hidden';
+    messageInput.name = 'message';
+    messageInput.value = message;
+    hiddenForm.appendChild(messageInput);
+
+    const timestampInput = document.createElement('input');
+    timestampInput.type = 'hidden';
+    timestampInput.name = 'timestamp';
+    timestampInput.value = new Date().toISOString();
+    hiddenForm.appendChild(timestampInput);
+
+    // Create hidden iframe for submission
+    let iframe = document.getElementById('hidden_iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'hidden_iframe';
+      iframe.name = 'hidden_iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+
+    // Add form to body and submit
+    document.body.appendChild(hiddenForm);
+    
+    // Handle form submission success (with delay to ensure submission completes)
+    setTimeout(function() {
+      // Remove the form after submission
+      if (document.body.contains(hiddenForm)) {
+        document.body.removeChild(hiddenForm);
+      }
+      
+      // Show success message
+      alert('Thank you for your message! I will get back to you soon.');
+      contactForm.reset();
+      
+      // Re-enable button
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }, 1000);
+
+    hiddenForm.submit();
   });
 }
 
