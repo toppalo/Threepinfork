@@ -249,6 +249,221 @@ body {
   margin-top: 0;
 }
 
+/* Model Card on Models Page */
+.model-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+.model-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.model-card:hover .model-card-overlay {
+  opacity: 1;
+}
+
+.model-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-color);
+  text-transform: uppercase;
+}
+
+.model-card img {
+  transition: transform 0.3s ease;
+}
+
+.model-card:hover img {
+  transform: scale(1.02);
+}
+
+/* Model Profile Section */
+.model-profile {
+  margin-top: 100px;
+  padding: 60px 40px 40px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.model-profile-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.model-description {
+  padding: 20px 0;
+}
+
+.model-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.model-bio {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-color);
+}
+
+.model-bio p {
+  margin-bottom: 20px;
+}
+
+.model-main-photo {
+  width: 100%;
+  position: sticky;
+  top: 120px;
+}
+
+.model-main-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border-color);
+}
+
+/* Model Portfolio Gallery */
+.model-page-gallery {
+  padding: 40px 40px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  border-top: 1px solid var(--border-color);
+  padding-top: 40px;
+}
+
+/* Model Categories Grid */
+.model-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover .category-overlay {
+  opacity: 1;
+}
+
+.category-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: white;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+  .model-profile-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .model-main-photo {
+    position: relative;
+    top: auto;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .model-profile {
+    padding: 40px 20px 20px;
+  }
+  
+  .model-name {
+    font-size: 36px;
+  }
+  
+  .model-bio {
+    font-size: 14px;
+  }
+  
+  .model-page-gallery {
+    padding: 20px 20px 60px;
+  }
+  
+  .model-categories-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .category-name {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-name {
+    font-size: 24px;
+  }
+}
+
+
 /* About Page */
 .about-section {
   margin-top: 100px;

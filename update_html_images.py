@@ -83,6 +83,65 @@ def update_about_page():
     print(f"  ✅ Updated about.html with image: {rel_path}")
     return True
 
+def update_models_page():
+    """Update the models page with model portraits from models folder."""
+    models_folder = Path('images/models')
+    if not models_folder.exists():
+        print("⚠️  No images/models folder found")
+        return False
+    
+    # Get all subdirectories (each model should be in their own folder)
+    model_folders = [d for d in models_folder.iterdir() if d.is_dir()]
+    
+    if not model_folders:
+        print("⚠️  No model subfolders found in images/models/")
+        return False
+    
+    print(f"📁 Found {len(model_folders)} model folders")
+    
+    with open('models.html', 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Find the gallery container
+    gallery_match = re.search(r'(<div class="gallery-container">)(.*?)(</div>\s*</main>)', content, re.DOTALL)
+    
+    if not gallery_match:
+        print("⚠️  Could not find gallery container in models.html")
+        return False
+    
+    # Build gallery items - use the first image from each model folder as the portrait
+    gallery_items = []
+    for model_folder in sorted(model_folders):
+        images = get_images_in_folder(model_folder)
+        if images:
+            # Use first image as the portrait/main photo
+            portrait_path = str(images[0]).replace('\\', '/')
+            model_name = model_folder.name
+            
+            # Store all image paths in a data attribute for the modal
+            all_image_paths = [str(img).replace('\\', '/') for img in images]
+            # Escape quotes and use pipe separator (simpler than JSON escaping in HTML)
+            all_images_attr = '|'.join(all_image_paths).replace('"', '&quot;')
+            
+            gallery_items.append(f'      <div class="gallery-item" data-model="{model_name}" data-images="{all_images_attr}">\n        <img src="{portrait_path}" alt="{model_name}">\n      </div>')
+            print(f"  📸 {model_name}: {len(images)} images (using {images[0].name} as portrait)")
+    
+    if not gallery_items:
+        print("⚠️  No images found in model folders")
+        return False
+    
+    new_gallery_content = '\n'.join(gallery_items)
+    
+    # Replace the gallery content
+    new_content = content[:gallery_match.start(2)] + '\n' + new_gallery_content + '\n    ' + content[gallery_match.end(2):]
+    
+    # Write updated content
+    with open('models.html', 'w', encoding='utf-8') as f:
+        f.write(new_content)
+    
+    print(f"  ✅ Updated models.html with {len(gallery_items)} models")
+    return True
+
 def update_overview_page():
     """Update the overview page with overview images or a mix from categories."""
     # First check if there's an overview folder
@@ -161,6 +220,10 @@ def main():
     
     # Update about page
     update_about_page()
+    print()
+    
+    # Update models page
+    update_models_page()
     print()
     
     # Update overview page

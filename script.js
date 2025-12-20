@@ -76,6 +76,12 @@ function createModal() {
 }
 
 function collectGalleryImages() {
+  // Check if we're in a model gallery context (from models page)
+  if (typeof window !== 'undefined' && window.modelGalleryImages && window.modelGalleryImages.length > 0) {
+    galleryImages = window.modelGalleryImages;
+    return;
+  }
+  
   galleryImages = [];
   const items = document.querySelectorAll('.gallery-item img');
   items.forEach(img => {
@@ -87,8 +93,17 @@ function openModal(imgSrc) {
   const modal = createModal();
   collectGalleryImages();
   
-  currentImageIndex = galleryImages.indexOf(imgSrc);
-  if (currentImageIndex === -1) currentImageIndex = 0;
+  // Use global index if available (from models page), otherwise find index
+  if (typeof window !== 'undefined' && window.currentImageIndex !== undefined) {
+    currentImageIndex = window.currentImageIndex;
+  } else {
+    currentImageIndex = galleryImages.indexOf(imgSrc);
+    if (currentImageIndex === -1) currentImageIndex = 0;
+  }
+  
+  if (typeof window !== 'undefined') {
+    window.currentImageIndex = currentImageIndex;
+  }
   
   const modalImg = modal.querySelector('#modalImage');
   modalImg.src = galleryImages[currentImageIndex];
@@ -105,21 +120,43 @@ function closeModal() {
 
 function showNextImage() {
   if (galleryImages.length === 0) return;
+  
+  // Use global index if available (from models page)
+  if (typeof window !== 'undefined' && window.currentImageIndex !== undefined) {
+    currentImageIndex = window.currentImageIndex;
+  }
+  
   currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  
+  if (typeof window !== 'undefined') {
+    window.currentImageIndex = currentImageIndex;
+  }
+  
   const modalImg = modal.querySelector('#modalImage');
   modalImg.src = galleryImages[currentImageIndex];
 }
 
 function showPreviousImage() {
   if (galleryImages.length === 0) return;
+  
+  // Use global index if available (from models page)
+  if (typeof window !== 'undefined' && window.currentImageIndex !== undefined) {
+    currentImageIndex = window.currentImageIndex;
+  }
+  
   currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  
+  if (typeof window !== 'undefined') {
+    window.currentImageIndex = currentImageIndex;
+  }
+  
   const modalImg = modal.querySelector('#modalImage');
   modalImg.src = galleryImages[currentImageIndex];
 }
 
-// Add click event to gallery items
+// Add click event to gallery items (but skip model items which have their own handler)
 document.addEventListener('DOMContentLoaded', () => {
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryItems = document.querySelectorAll('.gallery-item:not([data-model])');
   galleryItems.forEach(item => {
     const img = item.querySelector('img');
     if (img) {

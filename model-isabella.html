@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isabella - ThreePinFork</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Minimal Navigation -->
+  <nav class="minimal-nav">
+    <div class="nav-wrapper">
+      <a href="index.html" class="logo">ThreePinFork</a>
+      <ul class="nav-menu">
+        <li><a href="index.html">OVERVIEW</a></li>
+        <li><a href="portraits.html">PORTRAITS</a></li>
+        <li><a href="dance.html">DANCE</a></li>
+        <li><a href="engagement.html">ENGAGEMENT</a></li>
+        <li><a href="fashion.html">FASHION</a></li>
+        <li><a href="models.html" class="active">MODELS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Model Profile Section -->
+  <section class="model-profile">
+    <div class="model-profile-container">
+      <!-- Left: Description -->
+      <div class="model-description">
+        <h1 class="model-name">Isabella</h1>
+        <div class="model-bio">
+          <p>Isabella brings a captivating presence to every shoot, seamlessly transitioning between high fashion elegance and approachable warmth. With her versatile look and natural ability to connect with the camera, she effortlessly embodies both bold editorial concepts and intimate portrait moments.</p>
+          <p>Her portfolio showcases an impressive range — from striking jewelry campaigns to soft, dreamy pink-toned editorials and dynamic digital compositions. Isabella's professionalism, poise, and collaborative spirit make her an exceptional talent for any creative vision.</p>
+        </div>
+      </div>
+      
+      <!-- Right: Main Photo -->
+      <div class="model-main-photo">
+        <img src="images/models/Isabella/Isabella_ Main.jpg" alt="Isabella">
+      </div>
+    </div>
+  </section>
+
+  <!-- Model Gallery -->
+  <section class="model-page-gallery">
+    <h2 class="gallery-title">Portfolio</h2>
+    <div class="model-categories-grid">
+      <!-- Digitals Category -->
+      <div class="category-card" data-category="digitals">
+        <img src="images/models/Isabella/Isabella Digitals/Isbella_digital_main.jpg" alt="Isabella Digitals">
+        <div class="category-overlay">
+          <span class="category-name">Digitals</span>
+        </div>
+      </div>
+
+      <!-- Jewelry Category -->
+      <div class="category-card" data-category="jewelry">
+        <img src="images/models/Isabella/Isabella_Jewelry/Isabella_jewelry_main.jpg" alt="Isabella Jewelry">
+        <div class="category-overlay">
+          <span class="category-name">Jewelry</span>
+        </div>
+      </div>
+
+      <!-- Apparel Category -->
+      <div class="category-card" data-category="apparel">
+        <img src="images/models/Isabella/Isabella_Pink/Isabella_pink_main.jpg" alt="Isabella Apparel">
+        <div class="category-overlay">
+          <span class="category-name">Apparel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hidden image data for each category -->
+  <div id="category-images" style="display: none;">
+    <div data-category="digitals">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isbella_digital_main.jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (42 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (43 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (52 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (63 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (66 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (67 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (68 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (69 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella Digitals/Isabella (77 of 140).jpg">
+    </div>
+    <div data-category="jewelry">
+      <img data-src="images/models/Isabella/Isabella_Jewelry/Isabella_jewelry_main.jpg">
+      <img data-src="images/models/Isabella/Isabella_Jewelry/Isabella (106 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Jewelry/Isabella (111 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Jewelry/Isabella (115 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Jewelry/Isabella (117 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Jewelry/Isabella (123 of 140).jpg">
+    </div>
+    <div data-category="apparel">
+      <img data-src="images/models/Isabella/Isabella_Pink/Isabella_pink_main.jpg">
+      <img data-src="images/models/Isabella/Isabella_Pink/Isabella (135 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Pink/Isabella (136 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Pink/Isabella (137 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Pink/Isabella (138 of 140).jpg">
+      <img data-src="images/models/Isabella/Isabella_Pink/Isabella (139 of 140).jpg">
+    </div>
+  </div>
+
+  <!-- Modal for full-size images -->
+  <div class="modal" id="imageModal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImage" src="" alt="">
+    <div class="modal-nav">
+      <button class="modal-prev">‹</button>
+      <button class="modal-next">›</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="model-slideshow.js"></script>
+</body>
+</html>
+
