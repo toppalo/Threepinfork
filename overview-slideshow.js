@@ -53,18 +53,22 @@ document.addEventListener('DOMContentLoaded', function() {
     thumbnailsContainer.innerHTML = '';
     
     allImages.forEach((imageSrc, index) => {
-      const thumbnail = document.createElement('img');
-      thumbnail.src = imageSrc;
-      thumbnail.classList.add('modal-thumbnail');
+      const thumb = document.createElement('div');
+      thumb.className = 'modal-thumbnail';
       if (index === currentIndex) {
-        thumbnail.classList.add('active');
+        thumb.classList.add('active');
       }
       
-      thumbnail.addEventListener('click', function() {
+      const thumbImg = document.createElement('img');
+      thumbImg.src = imageSrc;
+      thumbImg.alt = `Thumbnail ${index + 1}`;
+      
+      thumb.appendChild(thumbImg);
+      thumb.addEventListener('click', function() {
         showImage(index);
       });
       
-      thumbnailsContainer.appendChild(thumbnail);
+      thumbnailsContainer.appendChild(thumb);
     });
   }
   
