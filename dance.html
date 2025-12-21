@@ -34,59 +34,40 @@
     <h1>DANCE</h1>
   </div>
 
-  <!-- Gallery -->
+  <!-- Dance Categories Grid -->
   <main class="gallery-main">
-    <div class="gallery-container">
-      <div class="gallery-item">
-        <img src="images/dance/Mary (35 of 42).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (1 of 1).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (1 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (10 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (11 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (12 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (13 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (14 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (15 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (2 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (3 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (4 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (6 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (7 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (8 of 15).jpg" alt="Dance Photography">
-      </div>
-      <div class="gallery-item">
-        <img src="images/dance/random (9 of 15).jpg" alt="Dance Photography">
+    <div class="dance-categories-grid">
+      <!-- Chavalos Category -->
+      <div class="category-card" data-category="chavalos">
+        <img src="images/dance/Chavalos/chavalos_main.jpg" alt="Chavalos">
+        <div class="category-overlay">
+          <span class="category-name">Chavalos</span>
+        </div>
       </div>
     </div>
   </main>
+
+  <!-- Hidden image data for each category -->
+  <div id="category-images" style="display: none;">
+    <div data-category="chavalos">
+      <img data-src="images/dance/Chavalos/chavalos_main.jpg">
+      <img data-src="images/dance/Chavalos/random (1 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (10 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (11 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (12 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (13 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (14 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (15 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (2 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (3 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (4 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (5 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (6 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (7 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (8 of 15).jpg">
+      <img data-src="images/dance/Chavalos/random (9 of 15).jpg">
+    </div>
+  </div>
 
   <!-- Modal for full-size images -->
   <div class="modal" id="imageModal">
@@ -96,8 +77,11 @@
       <button class="modal-prev">‹</button>
       <button class="modal-next">›</button>
     </div>
+    <!-- Thumbnail strip -->
+    <div class="modal-thumbnails" id="modalThumbnails"></div>
   </div>
 
   <script src="script.js"></script>
+  <script src="dance-slideshow.js"></script>
 </body>
 </html>

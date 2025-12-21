@@ -112,30 +112,26 @@ body {
 }
 
 .gallery-container {
-  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 5px;
-  column-count: 4;
-  column-gap: 4px;
+  padding: 40px 20px;
 }
 
 .gallery-item {
-  break-inside: avoid;
-  margin-bottom: 4px;
   cursor: pointer;
-  opacity: 1;
-  transition: opacity 0.3s ease, transform 0.3s ease;
   position: relative;
-}
-
-.gallery-item:hover {
-  opacity: 0.9;
+  aspect-ratio: 3/4;
+  overflow: hidden;
 }
 
 .gallery-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
   border-radius: 0;
 }
 
@@ -161,11 +157,70 @@ body {
 
 .modal-content {
   max-width: 90%;
-  max-height: 90vh;
+  max-height: 70vh;
   object-fit: contain;
   margin: auto;
   display: block;
   cursor: default;
+}
+
+/* Modal Thumbnails */
+.modal-thumbnails {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  max-width: 90%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.modal-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.modal-thumbnails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.modal-thumbnail {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.modal-thumbnail:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.modal-thumbnail.active {
+  opacity: 1;
+  border-color: white;
+  transform: scale(1.1);
+}
+
+.modal-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .modal-close {
@@ -371,6 +426,106 @@ body {
   margin: 0 auto;
 }
 
+/* Fashion Categories Grid */
+.fashion-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.fashion-categories-grid .category-card {
+  aspect-ratio: 3/4;
+}
+
+.fashion-categories-grid .category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fashion-categories-grid .category-name {
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+/* Portraits Categories Grid */
+.portraits-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.portraits-categories-grid .category-card {
+  aspect-ratio: 3/4;
+}
+
+.portraits-categories-grid .category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portraits-categories-grid .category-name {
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+/* Dance Categories Grid */
+.dance-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.dance-categories-grid .category-card {
+  aspect-ratio: 3/4;
+}
+
+.dance-categories-grid .category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dance-categories-grid .category-name {
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+/* Engagement Categories Grid */
+.engagement-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.engagement-categories-grid .category-card {
+  aspect-ratio: 3/4;
+}
+
+.engagement-categories-grid .category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.engagement-categories-grid .category-name {
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
 .category-card {
   position: relative;
   cursor: pointer;
@@ -428,6 +583,10 @@ body {
     max-width: 600px;
     margin: 0 auto;
   }
+  
+  .fashion-categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -447,7 +606,11 @@ body {
     padding: 20px 20px 60px;
   }
   
-  .model-categories-grid {
+  .model-categories-grid,
+  .fashion-categories-grid,
+  .portraits-categories-grid,
+  .dance-categories-grid,
+  .engagement-categories-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
@@ -667,13 +830,9 @@ body {
 /* Responsive Design */
 @media (max-width: 1200px) {
   .gallery-container {
-    column-count: 3;
-    padding: 5px;
-    column-gap: 4px;
-  }
-  
-  .gallery-item {
-    margin-bottom: 4px;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 30px 15px;
+    gap: 6px;
   }
 }
 
@@ -713,13 +872,9 @@ body {
   }
 
   .gallery-container {
-    column-count: 2;
-    padding: 5px;
-    column-gap: 4px;
-  }
-  
-  .gallery-item {
-    margin-bottom: 4px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px 10px;
+    gap: 6px;
   }
 
   .category-header {
@@ -752,12 +907,9 @@ body {
 
 @media (max-width: 480px) {
   .gallery-container {
-    column-count: 1;
-    padding: 5px;
-  }
-
-  .gallery-item {
-    margin-bottom: 4px;
+    grid-template-columns: 1fr;
+    padding: 20px 10px;
+    gap: 6px;
   }
 
   .logo {
