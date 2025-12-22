@@ -136,3 +136,4 @@ def generate_portraits_html():
 if __name__ == '__main__':
     generate_portraits_html()
 
+

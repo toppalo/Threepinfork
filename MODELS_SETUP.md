@@ -50,3 +50,4 @@ images/
 - All images in a model's folder will be available in the modal gallery when you click their portrait
 - Images are automatically resized if you use `resize_images.py` on the models folder
 
+

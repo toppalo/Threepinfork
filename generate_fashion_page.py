@@ -134,3 +134,4 @@ def generate_fashion_html():
 if __name__ == '__main__':
     generate_fashion_html()
 
+
