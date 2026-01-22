@@ -474,6 +474,37 @@ body {
   border: 1px solid var(--border-color);
 }
 
+.model-main-photo video.model-hero-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border-color);
+  object-fit: cover;
+}
+
+/* Video modal (e.g. Belen Singing) */
+.modal-video .modal-video-inner {
+  position: relative;
+  max-width: 90%;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-video .modal-video-player {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  display: block;
+  cursor: default;
+}
+
+.modal-video .video-modal-close {
+  cursor: pointer;
+}
+
 /* Model Portfolio Gallery */
 .model-page-gallery {
   padding: 40px 40px 80px;
