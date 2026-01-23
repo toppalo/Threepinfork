@@ -475,9 +475,10 @@ body {
 }
 
 .model-main-photo video.model-hero-video {
-  width: 100%;
+  width: 50%;
   height: auto;
   display: block;
+  margin: 0 auto;
   border: 1px solid var(--border-color);
   object-fit: cover;
 }

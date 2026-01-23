@@ -64,13 +64,13 @@
       <!-- Right: Portfolio introduction — singing video -->
       <div class="model-main-photo model-main-video-wrap">
         <video
+          id="belenSingingVideo"
           class="model-hero-video"
           src="images/models/Belen/Singing/Belen_singing.mp4"
           autoplay
           muted
           loop
           playsinline
-          controls
           poster="images/models/Belen/Cinematic/yasmin (9 of 43).JPG"
           aria-label="Belen singing"
         ></video>
@@ -151,5 +151,18 @@
 
   <script src="script.js"></script>
   <script src="model-slideshow.js"></script>
+  <script>
+    // Toggle mute/unmute on video click
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('belenSingingVideo');
+      if (video) {
+        video.addEventListener('click', () => {
+          video.muted = !video.muted;
+        });
+        // Add cursor pointer to indicate it's clickable
+        video.style.cursor = 'pointer';
+      }
+    });
+  </script>
 </body>
 </html>
